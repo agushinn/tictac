@@ -1,0 +1,47 @@
+.active {
+    animation: pulse 2s infinite ease-in-out;
+    border-bottom: 1px solid #605368;
+
+    .playerName,
+    .playerSymbol {
+        color: #7315b4;
+    }
+}
+
+.player {
+    color: #40006c;
+
+    .playerSymbol {
+        margin-left: 1rem;
+    }
+}
+
+.editInput {
+    border: none;
+    height: 1.8rem;
+    border-radius: 5px;
+    color: #40006c;
+    font-size: 0.9rem;
+    text-align: center;
+
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+button {
+    width: 3rem;
+    border: none;
+    background: none;
+    color: #40006c;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0.5rem 0.25rem 0.25rem 0.25rem;
+    text-align: center;
+    margin-left: 1rem;
+
+    &:hover {
+        color: #9d23fa;
+    }
+}
