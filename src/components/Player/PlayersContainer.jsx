@@ -1,7 +1,7 @@
 import styles from '@styles/components/Player/PlayersContainer.module.scss'
 
 import { Player } from '@components/Player/Player'
-import { SYMBOL_X, SYMBOL_O } from '@utils/symbols'
+import { SYMBOL_X, SYMBOL_O } from '@utils/constants'
 
 const PlayersContainer = ({ playerActive }) => {
     return (
