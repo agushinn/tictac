@@ -5,29 +5,23 @@ import { PlayersContainer } from '@components/Player/PlayersContainer'
 import { Board } from '@components/Board/Board'
 import { Log } from '@components/Log/Log'
 
-import { SYMBOL_X, SYMBOL_O, INITIAL_GAME_BOARD } from '@utils/constants'
+import { deriveActivePlayer } from '@utils/helper'
 
 function App() {
-    const [board, setBoard] = useState(INITIAL_GAME_BOARD)
-    const [playerActive, setPlayerActive] = useState(SYMBOL_X)
     const [turns, setTurns] = useState([])
 
-    const handleSelectPlayer = (row, col) => {
-        setPlayerActive((prevPlayer) =>
-            prevPlayer === SYMBOL_X ? SYMBOL_O : SYMBOL_X
-        )
+    // set initial player active, not as state but as computed state
+    // based on turns object
+    const playerActive = deriveActivePlayer(turns)
 
+    const handleSelectPlayer = (row, col) => {
         setTurns((prevTurns) => {
             // Ensure that we take the latest playerActive state
-            let currentPlayer = SYMBOL_X
-
-            if (prevTurns.length > 0 && prevTurns[0].turn === SYMBOL_X) {
-                currentPlayer = SYMBOL_O
-            }
+            const currentPlayer = deriveActivePlayer(prevTurns)
 
             const updateTurns = [
                 {
-                    turn: currentPlayer,
+                    currentPlayer,
                     row,
                     col,
                 },
@@ -35,15 +29,6 @@ function App() {
             ]
 
             return updateTurns
-        })
-
-        setBoard((prevBoard) => {
-            // deep copy of the board to prevent mutation
-            const updatedBoard = [
-                ...prevBoard.map((innerArray) => [...innerArray]),
-            ]
-            updatedBoard[row][col] = playerActive
-            return updatedBoard
         })
     }
 
@@ -53,7 +38,7 @@ function App() {
             <div id="game-container">
                 <PlayersContainer playerActive={playerActive} />
                 <Board
-                    board={board}
+                    turns={turns}
                     onUpdatePlayerActive={handleSelectPlayer}
                 />
             </div>
