@@ -6,7 +6,7 @@ const Log = ({ logs }) => {
             {logs.map((log) => {
                 return (
                     <li className={styles.logItem} key={`${log.row}${log.col}`}>
-                        {`${log.turn} Selected  {${log.row}, ${log.col}}`}
+                        {`${log.currentPlayer} Selected  {${log.row}, ${log.col}}`}
                     </li>
                 )
             })}
