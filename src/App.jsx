@@ -4,6 +4,7 @@ import { Header } from '@components/Header/Header'
 import { PlayersContainer } from '@components/Player/PlayersContainer'
 import { Board } from '@components/Board/Board'
 import { Log } from '@components/Log/Log'
+import { INITIAL_GAME_BOARD } from '@utils/constants'
 
 import { deriveActivePlayer } from '@utils/helper'
 
@@ -13,6 +14,13 @@ function App() {
     // set initial player active, not as state but as computed state
     // based on turns object
     const playerActive = deriveActivePlayer(turns)
+
+    let board = [...INITIAL_GAME_BOARD.map((innerArray) => [...innerArray])]
+
+    for (const turn of turns) {
+        const { currentPlayer, row, col } = turn
+        board[row][col] = currentPlayer
+    }
 
     const handleSelectPlayer = (row, col) => {
         setTurns((prevTurns) => {
@@ -38,7 +46,7 @@ function App() {
             <div id="game-container">
                 <PlayersContainer playerActive={playerActive} />
                 <Board
-                    turns={turns}
+                    board={board}
                     onUpdatePlayerActive={handleSelectPlayer}
                 />
             </div>
