@@ -1,4 +1,5 @@
 import { SYMBOL_X, SYMBOL_O } from '@utils/constants'
+import { WINNING_COMBINATIONS } from '@utils/winningCombinations'
 
 export const deriveActivePlayer = (gameTurns) => {
     let currentPlayer = SYMBOL_X
@@ -8,4 +9,25 @@ export const deriveActivePlayer = (gameTurns) => {
     }
 
     return currentPlayer
+}
+
+export const validateWinnerCondition = (board, turns) => {
+    for (const combination of WINNING_COMBINATIONS) {
+        const firstSquare = board[combination[0].row][combination[0].column]
+        const secondSquare = board[combination[1].row][combination[1].column]
+        const thirdSquare = board[combination[2].row][combination[2].column]
+
+        if (
+            firstSquare !== null &&
+            firstSquare === secondSquare &&
+            firstSquare === thirdSquare
+        ) {
+            return `${firstSquare} won!`
+        }
+    }
+
+    if (turns.length === 9) {
+        return "It's a draw!"
+    }
+    return null
 }

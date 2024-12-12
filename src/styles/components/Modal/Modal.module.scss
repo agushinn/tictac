@@ -1,0 +1,66 @@
+.backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(1px);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 15%;
+    bottom: 50%;
+    left: 30%;
+    right: 30%;
+    z-index: 2000;
+    animation: fadeIn 0.2s ease 0s 1 normal both;
+    height: 25rem;
+    background-color: rgba(174, 94, 255, 0.9);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (max-width: 992px) {
+        left: 10%;
+        right: 10%;
+    }
+
+    .modalTitle {
+        font-size: 3.5rem;
+        margin-bottom: 0;
+        color: #40006c;
+    }
+
+    .modalResult {
+        font-size: 2.8rem;
+        color: rgb(219, 219, 219);
+    }
+
+    .modalRematchButton {
+        box-shadow: 0px 0px 5px 0px #40006c;
+        border: 1px solid #40006c;
+        border-radius: 5px;
+        font-size: 1.6rem;
+        width: 9rem;
+        height: 3rem;
+        &:hover {
+            color: rgb(219, 219, 219);
+            background-color: #40006c;
+            box-shadow: none;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
