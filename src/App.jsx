@@ -4,9 +4,10 @@ import { Header } from '@components/Header/Header'
 import { PlayersContainer } from '@components/Player/PlayersContainer'
 import { Board } from '@components/Board/Board'
 import { Log } from '@components/Log/Log'
+import { Modal } from '@components/Modal/Modal'
 import { INITIAL_GAME_BOARD } from '@utils/constants'
 
-import { deriveActivePlayer } from '@utils/helper'
+import { deriveActivePlayer, validateWinnerCondition } from '@utils/helper'
 
 function App() {
     const [turns, setTurns] = useState([])
@@ -40,6 +41,11 @@ function App() {
         })
     }
 
+    let result = validateWinnerCondition(board, turns)
+
+    const restartGameHandler = () => {
+        setTurns([])
+    }
     return (
         <>
             <Header />
@@ -51,6 +57,7 @@ function App() {
                 />
             </div>
             <Log logs={turns} />
+            {result && <Modal onAccept={restartGameHandler} result={result} />}
         </>
     )
 }
