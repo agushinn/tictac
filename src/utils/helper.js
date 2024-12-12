@@ -22,13 +22,11 @@ export const validateWinnerCondition = (board, turns) => {
             firstSquare === secondSquare &&
             firstSquare === thirdSquare
         ) {
-            console.log('entró en el primer if')
             return `${firstSquare} won!`
         }
     }
 
     if (turns.length === 9) {
-        console.log('entró en if del empate')
         return "It's a draw!"
     }
     return null
