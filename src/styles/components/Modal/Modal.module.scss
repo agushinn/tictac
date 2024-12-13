@@ -22,12 +22,8 @@
     border-radius: 5px;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-
-    @media (max-width: 992px) {
-        left: 10%;
-        right: 10%;
-    }
 
     .modalTitle {
         font-size: 3.5rem;
@@ -51,6 +47,21 @@
             color: rgb(219, 219, 219);
             background-color: #40006c;
             box-shadow: none;
+        }
+    }
+
+    @media (max-width: 992px) {
+        left: 10%;
+        right: 10%;
+    }
+
+    @media (max-width: 576px) {
+        .modalTitle {
+            font-size: 2.8rem;
+        }
+
+        .modalResult {
+            font-size: 2.4rem;
         }
     }
 }
